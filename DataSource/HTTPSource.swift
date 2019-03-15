@@ -2,7 +2,7 @@
 import Foundation
 
 class HTTPSource: NSObject, DataSource {
-    let uri: String
+    let url: URL
     var size: UInt64 = 0
 
     let semaphore: DispatchSemaphore = DispatchSemaphore(value: 0)
@@ -10,11 +10,8 @@ class HTTPSource: NSObject, DataSource {
     let data: NSMutableData = NSMutableData()
     var completed = false
 
-    init?(uri: String) {
-        guard let url = URL(string: uri) else {
-            return nil
-        }
-        self.uri = uri
+    init?(with url: URL) {
+        self.url = url
         super.init()
 
         // TODO: set timeout

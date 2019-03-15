@@ -2,18 +2,17 @@
 import UIKit
 
 final class FileSource: DataSource {
-    let uri: String
+    let path: String
     let size: UInt64
 
     lazy fileprivate var fileHandle: FileHandle! = {
-        print("\(self.uri)")
-        return FileHandle(forReadingAtPath: self.uri)
+        return FileHandle(forReadingAtPath: self.path)
     }()
 
-    init?(uri: String) {
-        self.uri = uri
+    init?(with path: String) {
+        self.path = path
         do {
-            let attributes = try FileManager.default.attributesOfItem(atPath: self.uri) as NSDictionary
+            let attributes = try FileManager.default.attributesOfItem(atPath: self.path) as NSDictionary
             self.size = attributes.fileSize();
         } catch let e {
             print("E: \(e)")

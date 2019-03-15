@@ -2,14 +2,14 @@
 import UIKit
 
 final class FilterSource: DataSource {
-    let uri: String
+//    let uri: String
     let size: UInt64
 
     let dataSource: DataSource
     
     init?(dataSource: DataSource) {
         self.dataSource = dataSource
-        self.uri = dataSource.uri
+//        self.uri = dataSource.uri
         self.size = dataSource.size
     }
     
